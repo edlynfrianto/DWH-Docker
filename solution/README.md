@@ -30,8 +30,11 @@ datascience-notebook-container | http://localhost:8888/?token=123456789123456789
 
 2. Visualize the complete historical table view of the denormalized joined table in stdout by joining these three tables (hint: the join key lies in the `resources` section, please read carefully)
 > For this task, I notice that 'card' and 'saving_account' df have their own activity which makes it more complicated during the joining process as we need to make sure that each table update is reflected in the denormalised join table. 
+
 > Another thing I notice is that in ts: 1578654000000, there are changes in both cards and saving_accounts df independently. Both changes must be reflected at the joined table.
+
 > Last thing is the fact that when the card/ saving account is set to inactive, this must also be updated in the account df where their id is set to "" (ts: 1579078860000). Thus, if card/saving id is set to "", I directly set all the field as "" as I assume that the account df is the primary table and we need to prioritise this over other df
+
 > From my code, we are assuming that, the account is the primary table, thus if primary account table is setting card_id as "", we are not any making further changes in the card_account after that timestamp. This is also to meet the constraint where each account can only 1 active card and salary account
 
 3. From result from point no 2, discuss how many transactions has been made, when did each of them occur, and how much the value of each transaction?  
